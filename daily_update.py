@@ -5,6 +5,7 @@ import requests
 from datetime import date
 import time
 from imessage import send_imessage
+from rich import print
 from rich.pretty import pprint
 from typing import List, Dict, Optional, Union, Any
 import os
@@ -89,8 +90,8 @@ def get_contacts() -> List[Contact]:
     contacts_fp = "contacts.json"
 
     def _warning(msg: str):
-        print(f"[orange]WARNING[/] {msg}")
-        print("\nRe-run the program when this warning is fixed.")
+        print(f"[yellow]WARNING[/] {msg}")
+        print("\nRe-run the program when this warning is fixed.\n")
         exit(1)
 
     if not os.path.isfile(contacts_fp):
