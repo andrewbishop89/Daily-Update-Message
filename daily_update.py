@@ -26,46 +26,46 @@ def get_weather_string(location: str) -> str:
 
 @dataclass
 class Quote:
-	text: str
-	author: str
+    text: str
+    author: str
 
-	@staticmethod
-	def json_string_to_quote(json_string: str) -> "Quote":
-		json_data = json.loads(json_string)
-		if isinstance(json_data, list):
-			json_data = json_data[0]
-		if not isinstance(json_data, dict):
-			print(f"[bold red]ERROR[/] Incorrect data type of: {json_data}")
-			exit(1)
-		return Quote(
-			text=json_data['q'],
-			author=json_data['a']
-		)
+    @staticmethod
+    def json_string_to_quote(json_string: str) -> "Quote":
+        json_data = json.loads(json_string)
+        if isinstance(json_data, list):
+            json_data = json_data[0]
+        if not isinstance(json_data, dict):
+            print(f"[bold red]ERROR[/] Incorrect data type of: {json_data}")
+            exit(1)
+        return Quote(
+            text=json_data['q'],
+            author=json_data['a']
+        )
 
-	def __repr__(self):
-		return f'💯 {self.author.strip()}\n"{self.text.strip()}"\n'
+    def __repr__(self):
+        return f'"{self.text.strip()}"\n{self.author.strip()}\n'
 
 
 def get_motivational_quote() -> str:
 
-	base_url = "https://zenquotes.io/api/quotes"
-	res = requests.get(base_url)
-	res.raise_for_status()
+    base_url = "https://zenquotes.io/api/quotes"
+    res = requests.get(base_url)
+    res.raise_for_status()
 
-	quote = Quote.json_string_to_quote(res.text)
-	return quote
+    quote = Quote.json_string_to_quote(res.text)
+    return quote
 
 
 # def get_news_headlines(amount: int) -> List[str]:
-#	  return
+#     return
 
 
 # def get_top_crypto(amount: int) -> List[str]:
-#	return
+#   return
 
 
 # def get_top_stocks(amount: int) -> List[str]:
-#	  return
+#     return
 
 
 @dataclass
@@ -75,8 +75,8 @@ class Contact:
 
 
 def today_string():
-	day = date.today()
-	return f"Today is {day.strftime('%A %B %d, %Y')}"
+    day = date.today()
+    return f"Today is {day.strftime('%A %B %d, %Y')}"
 
 
 def send_greeting(contact: Contact):
